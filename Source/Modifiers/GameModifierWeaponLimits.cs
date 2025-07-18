@@ -34,10 +34,7 @@ public abstract class GameModifierRemoveWeapons : GameModifierBase
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.RemoveListener<Listeners.OnClientDisconnect>(OnClientDisconnect);
-        }
+        Core?.RemoveListener<Listeners.OnClientDisconnect>(OnClientDisconnect);
 
         foreach (var cachedWeaponPair in CachedItems)
         {

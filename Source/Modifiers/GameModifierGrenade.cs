@@ -18,18 +18,12 @@ public class GameModifierLongerFlashes : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerBlind>(OnPlayerBlind, HookMode.Pre);
-        }
+        Core?.RegisterEventHandler<EventPlayerBlind>(OnPlayerBlind, HookMode.Pre);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerBlind>(OnPlayerBlind, HookMode.Pre);
-        }
+        Core?.DeregisterEventHandler<EventPlayerBlind>(OnPlayerBlind, HookMode.Pre);
 
         base.Disabled();
     }
@@ -65,18 +59,12 @@ public abstract class GameModifierGrenadeSpawned : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterListener<Listeners.OnEntitySpawned>(OnEntitySpawned);
-        }
+        Core?.RegisterListener<Listeners.OnEntitySpawned>(OnEntitySpawned);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.RemoveListener<Listeners.OnEntitySpawned>(OnEntitySpawned);
-        }
+        Core?.RemoveListener<Listeners.OnEntitySpawned>(OnEntitySpawned);
 
         base.Disabled();
     }

@@ -11,6 +11,7 @@ public abstract class GameModifierBase
     public virtual bool SupportsRandomRounds { get; protected set; } = false;
     public virtual bool IsRegistered { get; protected set; } = true;
     public virtual bool IsActive { get; protected set; } = false;
+    public bool IsEnabled { get; private set; } = false;
     public virtual HashSet<string> IncompatibleModifiers { get; protected set; } = new HashSet<string>();
     public GameModifiersCore? Core { get; protected set; } = null;
     public ModifierConfig? Config { get; protected set; } = null;
@@ -40,31 +41,22 @@ public abstract class GameModifierBase
     public virtual void Enabled()
     {
         IsActive = true;
+        IsEnabled = true;
 
-        if (Config != null)
-        {
-            Config.ApplyConfig();
-        }
+        Config?.ApplyConfig();
     }
 
     public virtual void Disabled()
     {
         IsActive = false;
+        IsEnabled = false;
 
-        if (Config != null)
-        {
-            Config.RemoveConfig();
-        }
+        Config?.RemoveConfig();
     }
 
     public bool CheckIfIncompatible(GameModifierBase? modifier)
     {
-        if (modifier == null)
-        {
-            return false;
-        }
-
-        return IncompatibleModifiers.Contains(modifier.Name);
+        return modifier != null && IncompatibleModifiers.Contains(modifier.Name);
     }
 
     public bool CheckIfIncompatibleByName(string modifierName)

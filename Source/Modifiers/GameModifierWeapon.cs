@@ -195,20 +195,14 @@ public class GameModifierOneInTheChamber : GameModifierWeapon
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
-        }
+        Core?.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
         
         VirtualFunctions.CBaseEntity_TakeDamageOldFunc.Hook(OnTakeDamage, HookMode.Pre);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
-        }
+        Core?.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
         
         VirtualFunctions.CBaseEntity_TakeDamageOldFunc.Unhook(OnTakeDamage, HookMode.Pre);
 
@@ -280,18 +274,12 @@ public abstract class GameModifierFireRateBase : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventWeaponFire>(OnWeaponFire);
-        }
+        Core?.RegisterEventHandler<EventWeaponFire>(OnWeaponFire);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventWeaponFire>(OnWeaponFire);
-        }
+        Core?.DeregisterEventHandler<EventWeaponFire>(OnWeaponFire);
 
         base.Disabled();
     }
@@ -318,7 +306,7 @@ public abstract class GameModifierFireRateBase : GameModifierBase
         Server.NextFrame(() =>
         {
             float fireRateTicks = (weapon.NextPrimaryAttackTick - Server.TickCount) / FireRateMultiplier;
-            weapon.NextPrimaryAttackTick = Server.TickCount + + Convert.ToInt32(fireRateTicks);
+            weapon.NextPrimaryAttackTick = Server.TickCount + Convert.ToInt32(fireRateTicks);
 
             Utilities.SetStateChanged(weapon, "CBasePlayerWeapon", "m_nNextPrimaryAttackTick");
         });
@@ -341,18 +329,12 @@ public class GameModifierNoSpread : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventWeaponFire>(OnWeaponFire);
-        }
+        Core?.RegisterEventHandler<EventWeaponFire>(OnWeaponFire);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventWeaponFire>(OnWeaponFire);
-        }
+        Core?.DeregisterEventHandler<EventWeaponFire>(OnWeaponFire);
 
         base.Disabled();
     }

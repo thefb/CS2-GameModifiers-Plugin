@@ -14,18 +14,12 @@ public class GameModifierVampire : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
-        }
+        Core?.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
-        }
+        Core?.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
 
         // For now, we just reset everyone's health to default on removal ¯\_(ツ)_/¯
         Utilities.GetPlayers().ForEach(controller =>

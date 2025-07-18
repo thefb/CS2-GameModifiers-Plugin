@@ -39,6 +39,7 @@ public abstract class GameModifierMissedShot : GameModifierBase
 
     private HookResult OnPlayerHurt(EventPlayerHurt @event, GameEventInfo info)
     {
+        if (!IsEnabled) return HookResult.Continue;
         CCSPlayerController? attackingPlayer = @event.Attacker;
         CCSPlayerController? damagedPlayer = @event.Userid;
         if (attackingPlayer == null || !attackingPlayer.IsValid || damagedPlayer == null || !damagedPlayer.IsValid || !damagedPlayer.PawnIsAlive)
@@ -72,6 +73,7 @@ public abstract class GameModifierMissedShot : GameModifierBase
 
     private HookResult OnWeaponFire(EventWeaponFire @event, GameEventInfo info)
     {
+        if (!IsEnabled) return HookResult.Continue;
         var player = @event.Userid;
         if (player == null || player.IsValid == false || !player.PawnIsAlive)
         {

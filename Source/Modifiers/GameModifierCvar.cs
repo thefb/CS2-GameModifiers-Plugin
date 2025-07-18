@@ -80,10 +80,7 @@ public class GameModifierCvar : GameModifierBase
             Core.RegisterListener<Listeners.OnClientDisconnect>(OnClientDisconnect);
         }
 
-        if (_config != null)
-        {
-            _config.ApplyConfig();
-        }
+        _config?.ApplyConfig();
     }
 
     public override void Disabled()
@@ -96,10 +93,7 @@ public class GameModifierCvar : GameModifierBase
             Core.RemoveListener<Listeners.OnClientDisconnect>(OnClientDisconnect);
         }
 
-        if (_config != null)
-        {
-            _config.RemoveConfig();
-        }
+        _config?.RemoveConfig();
     }
 
     public bool ParseConfigFile(string filePath)

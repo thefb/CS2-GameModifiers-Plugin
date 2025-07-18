@@ -42,12 +42,8 @@ public abstract class GameModifierVelocity : GameModifierBase
         {
             GameModifiersUtils.SetPlayerSpeedMultiplier(controller, 1.0f);
         });
-
-        if (_speedTimer != null)
-        {
-            _speedTimer.Kill();
-            _speedTimer = null;
-        }
+        _speedTimer?.Kill();
+        _speedTimer = null;
 
         base.Disabled();
     }

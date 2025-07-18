@@ -23,18 +23,12 @@ public class GameModifierSwapPlacesOnKill : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
-        }
+        Core?.RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
-        }
+        Core?.DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
 
         base.Disabled();
     }
@@ -87,18 +81,12 @@ public class GameModifierSwapPlacesOnHit : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
-        }
+        Core?.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
-        }
+        Core?.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurtEvent);
 
         base.Disabled();
     }
@@ -124,20 +112,14 @@ public class GameModifierRandomSpawn : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
-        }
+        Core?.RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
 
         Utilities.GetPlayers().ForEach(ApplyRandomSpawnToPlayer);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
-        }
+        Core?.DeregisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
 
         base.Disabled();
     }
@@ -177,18 +159,12 @@ public class GameModifierTeleportOnReload : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventWeaponReload>(OnPlayerReload);
-        }
+        Core?.RegisterEventHandler<EventWeaponReload>(OnPlayerReload);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventWeaponReload>(OnPlayerReload);
-        }
+        Core?.DeregisterEventHandler<EventWeaponReload>(OnPlayerReload);
 
         base.Disabled();
     }
@@ -223,18 +199,12 @@ public class GameModifierTeleportOnHit : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
-        }
+        Core?.RegisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
-        }
+        Core?.DeregisterEventHandler<EventPlayerHurt>(OnPlayerHurt);
 
         base.Disabled();
     }
@@ -269,18 +239,12 @@ public class GameModifierResetOnReload : GameModifierBase
     {
         base.Enabled();
 
-        if (Core != null)
-        {
-            Core.RegisterEventHandler<EventWeaponReload>(OnPlayerReload);
-        }
+        Core?.RegisterEventHandler<EventWeaponReload>(OnPlayerReload);
     }
 
     public override void Disabled()
     {
-        if (Core != null)
-        {
-            Core.DeregisterEventHandler<EventWeaponReload>(OnPlayerReload);
-        }
+        Core?.DeregisterEventHandler<EventWeaponReload>(OnPlayerReload);
 
         base.Disabled();
     }
